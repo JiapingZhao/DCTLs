@@ -1,0 +1,26 @@
+// Created by Jiaping Zhao
+
+DEFINE_UI_PARAMS(MIDDLE_GRAY, MIDDLE_GRAY, DCTLUI_CHECK_BOX, 0)
+DEFINE_UI_PARAMS(PURE_BLACK, PURE_BLACK, DCTLUI_CHECK_BOX, 0)
+DEFINE_UI_PARAMS(PURE_WHITE, PURE_WHITE, DCTLUI_CHECK_BOX, 0)
+DEFINE_UI_PARAMS(GRAYSCALE, GRAYSCALE, DCTLUI_CHECK_BOX, 0)
+
+__DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B)
+{
+    if (PURE_BLACK == 1)
+        return make_float3(0.0f, 0.0f, 0.0f);
+
+    if (PURE_WHITE == 1)
+        return make_float3(1.0f, 1.0f, 1.0f);
+
+    if (MIDDLE_GRAY == 1)
+        return make_float3(0.5f, 0.5f, 0.5f);
+
+    if (GRAYSCALE == 1)
+    {
+        float value = (float)p_X / (p_Width - 1.0f);
+        return make_float3(value, value, value);
+    }
+
+    return make_float3(p_R, p_G, p_B);
+}
