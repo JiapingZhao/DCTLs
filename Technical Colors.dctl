@@ -3,7 +3,7 @@
 DEFINE_UI_PARAMS(MIDDLE_GRAY, MIDDLE_GRAY, DCTLUI_CHECK_BOX, 0)
 DEFINE_UI_PARAMS(PURE_BLACK, PURE_BLACK, DCTLUI_CHECK_BOX, 0)
 DEFINE_UI_PARAMS(PURE_WHITE, PURE_WHITE, DCTLUI_CHECK_BOX, 0)
-DEFINE_UI_PARAMS(GRAYSCALE, GRAYSCALE, DCTLUI_CHECK_BOX, 0)
+DEFINE_UI_PARAMS(GRAY_SCALE, GRAY_SCALE, DCTLUI_CHECK_BOX, 0)
 
 __DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B)
 {
@@ -16,7 +16,7 @@ __DEVICE__ float3 transform(int p_Width, int p_Height, int p_X, int p_Y, float p
     if (MIDDLE_GRAY == 1)
         return make_float3(0.5f, 0.5f, 0.5f);
 
-    if (GRAYSCALE == 1)
+    if (GRAY_SCALE == 1)
     {
         float value = (float)p_X / (p_Width - 1.0f);
         return make_float3(value, value, value);
