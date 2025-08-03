@@ -16,6 +16,6 @@ Here is a step-by-step tutorial for DCTL installation:
 
 2. Restart Davinci Resolve
    
-3. Once DaVinci Resolve starts, go to the Color page and create a serial node by pressing Alt+S.
+3. Once DaVinci Resolve starts, go to the Color page and create a serial node by pressing `Alt+S`(`Command+S` if you're using a Mac).
 
 4. Navigate to Effects > Resolve FX Color > DCTL, drag and drop it onto the node you just created. Then select your DCTL from the dropdown menu.
