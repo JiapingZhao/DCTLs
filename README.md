@@ -10,9 +10,9 @@ DCTL stands for Davinci Color Transform Language. It is a computer language/tran
 Here is a step-by-step tutorial for DCTL installation:
 
 1. Copy the `.dctl` file to your DaVinci Resolve LUT folder
-- Windows:  C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT
-- macOS: Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT
-- Linux: /home/resolve/LUT
+- Windows:  `C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT`
+- macOS: `Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT`
+- Linux: `/home/resolve/LUT`
 
 2. Restart Davinci Resolve
    
