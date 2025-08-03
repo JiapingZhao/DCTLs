@@ -1,12 +1,13 @@
 # DCTLs 
 
-## What are DCTLs
-DCTLs are color transformation scripts for DaVinci Resolve, functioning like LUTs but using C-like syntax instead of interpolated lookup tables for direct image transformations. 
+## What is DCTL?
+DCTL stands for Davinci Color Transform Language. It is a computer language/transformation scripts that works with Davinci Resolve. 
 
-## Requirement
-- DaVinci Resolve Studio (version 17 or newer is recommended)
+## What do I need?
+- You will need the paid version of DaVinci Resolve to run this tool.
 
-## Installation
+## How do I install DCTL on my PC
+# Here is a step-by-step tutorial for DCTL installation.
 1. Copy the `.dctl` file to your DaVinci Resolve LUT folder
 - Windows:  C:\ProgramData\Blackmagic Design\DaVinci Resolve\Support\LUT
 - macOS: Library/Application Support/Blackmagic Design/DaVinci Resolve/LUT
