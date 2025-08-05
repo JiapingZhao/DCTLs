@@ -1,0 +1,67 @@
+// Middle Gray version 1
+// by Jiaping Zhao
+
+// UI
+DEFINE_UI_PARAMS(Hide, Hide, DCTLUI_CHECK_BOX, 0)
+DEFINE_UI_PARAMS(Transfer_Function, Function, DCTLUI_COMBO_BOX, 0, {Linear, ACEScc, ACEScct, ARRI_LogC3, ARRI_LogC4, BMD_Gen5, Canon_Log, Canon_Log2, Canon_Log3, DaVinci_Intermediate, DJI_DLog, Fujifilm_FLog, Fujifilm_FLog2, Gamma_22, Gamma_24, Nikon_NLog, Panasonic_VLog, RED_Log3G10, Sony_SLog3}, {Linear, ACEScc, ACEScct, ARRI LogC3, ARRI LogC4, BMD Film Gen5, Canon Log, Canon Log2, Canon Log3, DaVinci Intermediate, DJI DLog, Fujifilm FLog, Fujifilm FLog2, Gamma 2.2, Gamma 2.4, Nikon NLog, Panasonic VLog, RED Log3G10, Sony SLog3})
+
+
+
+__DEVICE__ float get_middle_gray(int tf_idx) {
+    // Lookup table for middle gray values
+    float gray_values[] = {
+        0.180, // Linear
+        0.413, // ACEScc
+        0.413, // ACEScct
+        0.391, // ARRI LogC3
+        0.278, // ARRI LogC4
+        0.383, // BMD Film Gen 5
+        0.312, // Canon Log
+        0.387, // Canon Log2
+        0.330, // Canon Log3
+        0.336, // DaVinci Intermediate
+        0.398, // DJI D-Log
+        0.459, // Fujifilm F-Log
+        0.391, // Fujifilm F-Log2
+        0.458, // Gamma 2.2
+        0.489, // Gamma 2.4
+        0.363, // Nikon N-Log
+        0.423, // Panasonic V-Log
+        0.333, // RED Log3G10
+        0.410, // Sony S-Log3
+        0.488  // Apple Log
+    };
+    // Clamp index to valid range
+    if (tf_idx < 0) tf_idx = 0;
+    if (tf_idx > 19) tf_idx = 19;
+    return gray_values[tf_idx];
+}
+
+__DEVICE__ float4 transform(int p_Width, int p_Height, int p_X, int p_Y, float p_R, float p_G, float p_B, float p_A)
+{
+    float3 original_color = make_float3(p_R, p_G, p_B);
+    
+    // Get middle gray value based on transfer function
+    int tf_idx = Transfer_Function; // Combo box index
+    float gray = get_middle_gray(tf_idx);
+    
+    float3 color;
+    
+    if (Hide) {
+        float strip_top = p_Height * 0.65f;
+        float strip_bottom = p_Height * 0.75f;
+        if (p_Y >= strip_top && p_Y < strip_bottom) {
+            // Apply middle gray to the strip
+            color = make_float3(gray, gray, gray);
+        } else {
+            // Show original image outside the strip
+            color = original_color;
+        }
+    } else {
+        // Apply middle gray to entire image when Hide is disabled
+        color = make_float3(gray, gray, gray);
+    }
+    
+    return make_float4(color.x, color.y, color.z, p_A);
+}
+
