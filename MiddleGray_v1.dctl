@@ -1,5 +1,5 @@
 // Middle Gray version 1
-// by Jiaping Zhao
+// Created by Jiaping Zhao
 
 // UI
 DEFINE_UI_PARAMS(Hide, Hide, DCTLUI_CHECK_BOX, 0)
